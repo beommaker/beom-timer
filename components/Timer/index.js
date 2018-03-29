@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators as beomtimerActions }  from '../../reducer';
 import Timer from './presenter';
 
 
@@ -11,5 +13,13 @@ function mapStateToProps(state){
     }
 }
 
+function mapDispatchToProps(dispatch){
+    return {
+        startTimer: bindActionCreators(beomtimerActions.startTimer, dispatch),
+        restartTimer: bindActionCreators(beomtimerActions.restartTimer, dispatch),
+        addSecond: bindActionCreators(beomtimerActions.addSecond, dispatch)
+    };
+}
 
-export default connect(mapStateToProps)(Timer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
